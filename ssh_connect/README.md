@@ -31,25 +31,26 @@ which commands can be run.
 3) A list of available hosts will appear. When the prompt for the hosts
 to command appears, type the ones which you want to receive the command.
 The hostnames should be separated by whitespace only.
-Alternatively, type "a" or "all" to command all of the listed hosts.
+Alternatively, type `a` or `all` to command all of the listed hosts.
 Full terminal output for each should become available shortly.
 Note: The channel times out after 10 seconds.
-4) In future host prompts, type 'e' and press Enter to exit the program.
-5) In future prompts for the command, press "stop" to stop running processes
-on the target machines. Also, you can press 'e' and hit Enter to exit the program.
+4) In future host prompts, type `e` and press Enter to exit the program.
+5) In future prompts for the command, type `stop` and hit Enter to stop running processes
+on the target machines. Also, you can press `e` and hit Enter to exit the program.
 
 ### Design
 The application first pings all of the devices on the same network as the user.
-For now, 256 machines are pinged. The responsive ones are written in 'available.txt'
-in the same directory as 'connect.py'. Afterwards, the program will try to SSH into
-each machine on this list, and write all of the successful IPs in 'sshable.txt' for
+For now, 256 machines are pinged. The responsive ones are written in `available.txt`
+in the same directory as `connect.py`. Afterwards, the program will try to SSH into
+each machine on this list, and write all of the successful IPs in `sshable.txt` for
 the user to make use of if they so choose.
-The SSH session is Pythonically handled as an SSHClient session. The channel associated
+
+The SSH session is Pythonically handled as an `SSHClient` session. The channel associated
 with the client session is initialized and stored so that commands can be sent to it.
-This is done when I call invoke_shell(), which opens a pseudo-terminal.
-Note: I use Paramiko.Channel.send() to send commands rather than exec_command(),
-because I encountered problems in doing so (i.e. threw an SSHException).
-It may have to do with the devices not supporting the channel type that exec_command()
+This is done when I call `invoke_shell()`, which opens a pseudo-terminal.
+Note: I use `Paramiko.Channel.send()` to send commands rather than `exec_command()`,
+because I encountered problems in doing so (i.e. threw an `SSHException`).
+It may have to do with the devices not supporting the channel type that `exec_command()`
 uses. At any rate, the workaround I used appears to work in my limited use cases.
 
 
@@ -64,5 +65,6 @@ The following are areas to be developed beyond the initial prototype
 ### Resources
 Paramiko SSH Library for Python
 https://docs.paramiko.org/en/stable/
+
 Bash Guide for Beginners
 https://tldp.org/LDP/Bash-Beginners-Guide/html/
